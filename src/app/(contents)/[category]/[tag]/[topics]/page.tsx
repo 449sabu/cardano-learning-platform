@@ -12,8 +12,13 @@ export async function generateStaticParams() {
   }));
 }
 
-const Page = ({ params }: { params: { topics: string } }) => {
-  return <div>{JSON.stringify(params)}</div>;
+const Page = async ({ params }: { params: { topics: string } }) => {
+  return (
+    <div>
+      {JSON.stringify(params)}
+      <div>一段深いページ</div>
+    </div>
+  );
 };
 
 export default Page;
