@@ -1,21 +1,20 @@
-// import {
-//   getRepository,
-//   getSingleFileData,
-//   getContentsList,
-// } from '@/lib/github';
+import { getTags } from '@/lib/github';
 
 export async function generateStaticParams() {
-  // const contents = ['topics', 'course', 'resource'];
-  // const data = contents.map((item) => {
-  //   const res = getContentsList(item);
-  // });
+  const tags = await getTags();
+  const params: { category: string; tag: string }[] = [];
+  const keys = Object.keys(tags) as Array<'course' | 'topics' | 'resource'>;
 
-  return [
-    { category: 'topics', tag: 'nft' },
-    { category: 'topics', tag: 'contract' },
-    { category: 'course', tag: 'contract' },
-    { category: 'resource', tag: 'library' },
-  ];
+  keys.map((key) => {
+    tags[key].map((tag) => {
+      params.push({
+        category: key,
+        tag: tag.label,
+      });
+    });
+  });
+
+  return params;
 }
 
 async function Page({ params }: { params: { category: string; tag: string } }) {
