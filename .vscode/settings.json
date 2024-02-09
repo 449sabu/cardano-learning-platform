@@ -1,4 +1,15 @@
 {
+<<<<<<< HEAD
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": ["clsx", "lucide"]
+=======
+  "deno.enablePaths": [
+    "supabase/functions"
+  ],
+  "deno.lint": true,
+  "deno.unstable": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  }
+>>>>>>> mdx
 }

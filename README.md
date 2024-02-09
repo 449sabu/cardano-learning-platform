@@ -34,3 +34,33 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+## Supabase
+- https://supabase.com/docs/guides/auth/auth-helpers/nextjs
+- https://supabase.com/docs/guides/auth/server-side/nextjs
+
+```bash
+pnpm dlx supabase login
+```
+
+```bash
+pnpm dlx supabase init
+```
+
+```bash
+pnpm dlx supabase link --project-ref < Reference ID > -p < Project Password >
+```
+- https://supabase.com/docs/reference/cli/supabase-link
+
+### 型定義
+```bash
+pnpm dlx supabase gen types typescript --linked > < Path >
+```
+https://supabase.com/docs/reference/cli/supabase-gen-types-typescript
+
+
+### パッケージインストール
+```bash
+pnpm add @supabase/supabase-js @supabase/ssr
+```
