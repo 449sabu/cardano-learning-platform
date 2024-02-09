@@ -3,21 +3,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
-
-export interface TagsList {
-  course: {
-    label: string;
-    name: string;
-  }[];
-  topics: {
-    label: string;
-    name: string;
-  }[];
-  resource: {
-    label: string;
-    name: string;
-  }[];
-}
+import type { TagsList } from '@/types/config';
 
 const Sidebar = ({ tags }: { tags: TagsList }) => {
   const params = useParams<{

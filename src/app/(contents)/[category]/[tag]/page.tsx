@@ -1,4 +1,5 @@
-import { getTags } from '@/lib/github';
+import ContentsCard from '@/components/contents-card';
+import { getConfigYaml, getContentsList, getTags } from '@/lib/github';
 
 export async function generateStaticParams() {
   const tags = await getTags();
@@ -18,10 +19,33 @@ export async function generateStaticParams() {
 }
 
 async function Page({ params }: { params: { category: string; tag: string } }) {
-  // const githubRepo = await getRepository();
-  // const singleFileData = await getSingleFileData(githubRepo.download_url);
-  // console.log(githubRepo);
-  // console.log(singleFileData);
+  if (params.category === 'course') {
+    const courseArray = await getContentsList(params.category);
+
+    const courseHeaderArray = await Promise.all(
+      courseArray.map(async (data) => {
+        const configYaml = await getConfigYaml(`${data.path}/config.yaml`);
+        return configYaml;
+      }),
+    );
+
+    const data = courseHeaderArray.filter((item) => {
+      if (item.tags.includes(params.tag)) {
+        return item;
+      }
+    });
+
+    return (
+      <div className="p-4 grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+        {data.map((item) => (
+          <ContentsCard
+            key={item.title}
+            contents={{ title: item.title, description: item.description }}
+          />
+        ))}
+      </div>
+    );
+  }
 
   return <h1>{JSON.stringify(params)}</h1>;
 }
