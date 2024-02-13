@@ -2,6 +2,7 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import Navigation from '@/components/navigation';
 import { ModeToggle } from '@/components/theme-togle';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -13,7 +14,9 @@ const Header = () => {
         </div>
         <div className="flex items-center justify-end gap-3">
           <ModeToggle />
-          <Button>Sign in</Button>
+          <Link href="/auth">
+            <Button>ログイン</Button>
+          </Link>
         </div>
       </div>
       <Separator />
